@@ -2,6 +2,10 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+/* this file is used to create Game class methods for starting and 
+ending the game, handling interactions, getting a random phrase,
+checking for a win, and removing a life from the scoreboard  */
+
 class Game {
     constructor () {
         /* used to track the number of missed guesses by the player.

@@ -2,6 +2,10 @@
  * Project 4 - OOP Game App
  * app.js */
 
+/* this file is used to create a new instance of the Game class
+and add event listeners for the start button and onscreen 
+keyboard buttons */
+
 /* create a new instance of the Game class */
 const game = new Game;
 
@@ -25,8 +29,8 @@ game.
 to use the key CSS class and not sue the chosen or wrong CSS
 classes
 3) Reset all of the heart images (ie: the players lives) in the
-scoreboard at the bottom of the gameboard to display the liveHeart
-image */
+scoreboard at the bottom of the gameboard to display the 
+liveHeart image */
 
 const phrase1 = new Phrase('Pork Chop');
 

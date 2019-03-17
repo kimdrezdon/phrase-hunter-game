@@ -2,7 +2,9 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
- class Phrase {
+/* this file is used to handle the creation of phrases */
+
+class Phrase {
     constructor (phrase) {
         /* the actual phrase the Phrase object is representing, set to the
         phrase parameter but converted to all lower case */

@@ -4,9 +4,9 @@
 
 class Game {
     constructor () {
-        this.missed = 
-        this.phrases = 
-        this.activePhrase = 
+        this.missed = 0;
+        this.phrases = [];
+        this.activePhrase = null;
     }
 
     startGame () {

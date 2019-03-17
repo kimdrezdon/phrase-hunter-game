@@ -45,7 +45,8 @@ class Game {
     array and returns it */
     getRandomPhrase () {
         const randomNum = Math.floor(Math.random()*5);
-        return this.phrases[randomNum];
+        const randomPhrase = new Phrase(this.phrases[randomNum]);
+        return randomPhrase;
     }
 
     /* controls most of the game logice. Checks to see if the button 

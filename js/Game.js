@@ -4,8 +4,18 @@
 
 class Game {
     constructor () {
+        /* used to track the number of missed guesses by the player.
+        Initial value is 0 since no guesses have been made at the 
+        start of the game */
         this.missed = 0;
+        /* an array of 5 Phrase objects to use with the game. A phrase
+        should only include letters and spaces, no numbers punctuation
+        or special characters */
         this.phrases = [];
+        /* this si the Phrase object that's currently in play. The 
+        initial value is null. Within the startGame method, this 
+        property will be set to the Phrase object returned from a call
+        to the getRandomPhrase method */
         this.activePhrase = null;
     }
 

@@ -4,11 +4,17 @@
 
  class Phrase {
     constructor (phrase) {
+        /* the actual phrase the Phrase object is representing, set to the
+        phrase parameter but converted to all lower case */
         this.phrase = phrase.toLowerCase();
     }
 
     /*  adds letter placeholders to the display when the game starts, each 
-    letter represented by an empty box, one li element for each letter */
+    letter represented by an empty box, one li element for each letter. 
+    When the player correctly guesses a letter, the empty box is replaced 
+    with the matched letter (see the showMatchedLetter method below). The 
+    phrase displayed on the screen uses the letter CSS class for letters and
+    the space CSS class for spaces */
     addPhraseToDisplay () {
         const phraseUl = document.querySelector('#phrase ul');
         for (let char of this.phrase) {
@@ -23,7 +29,8 @@
         }
     }
 
-    //checks to see if the letter selected by the player matches a letter in the phrase
+    /*  checks to see if the letter selected by the player matches a letter 
+    in the phrase */
     checkLetter () {
 
     }

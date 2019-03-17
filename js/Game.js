@@ -44,7 +44,8 @@ class Game {
     /* randomly retrieves one of the phrases stored in the phrases 
     array and returns it */
     getRandomPhrase () {
-
+        const randomNum = Math.floor(Math.random()*5);
+        return this.phrases[randomNum];
     }
 
     /* controls most of the game logice. Checks to see if the button 

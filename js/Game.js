@@ -15,14 +15,24 @@ class Game {
         /* an array of 5 Phrase objects to use with the game. A phrase
         should only include letters and spaces, no numbers punctuation
         or special characters */
-        this.phrases = [];
+        this.phrases = this.createPhrases();
         /* this si the Phrase object that's currently in play. The 
         initial value is null. Within the startGame method, this 
         property will be set to the Phrase object returned from a call
         to the getRandomPhrase method */
         this.activePhrase = null;
     }
-
+    
+    /* creates phrases array */
+    createPhrases() {
+        const array =  ['Batteries Not Included', 
+                        'Early in the Morning',
+                        'Once in a Blue Moon',
+                        'Down by the River',
+                        'Horse of a Different Color'];
+        return array;
+    }
+    
     /* hides the start screen overlay, calls the getRandomPhrase 
     method and sets the activePhrase property with the chosen phrase.
     Addes that phrase to the board by calling the addPhraseToDisplay 

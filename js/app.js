@@ -6,12 +6,15 @@
 and add event listeners for the start button and onscreen 
 keyboard buttons */
 
-/* create a new instance of the Game class */
-const game = new Game;
-
 /* add a click event listener to the Start Game button which
 creates a new Game object and starts the game by calling the 
 startGame method */
+const startButton = document.querySelector('#btn__reset');
+startButton.addEventListener('click', () => {
+    const game = new Game;
+    game.startGame();
+});
+
 
 /* add click event listeners to each of the onscreen keyboard 
 buttons so that clicking a button calls the handleInteraction
@@ -31,8 +34,3 @@ classes
 3) Reset all of the heart images (ie: the players lives) in the
 scoreboard at the bottom of the gameboard to display the 
 liveHeart image */
-
-const phrase1 = new Phrase('Pork Chop');
-
-phrase1.addPhraseToDisplay();
-

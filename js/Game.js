@@ -52,7 +52,7 @@ class Game {
         return randomPhrase;
     }
 
-    /* controls most of the game logice. Checks to see if the button 
+    /* controls most of the game logic. Checks to see if the button 
     clicked by the player matches a letter in the phrase and then 
     directs the game based on the correct or incorrect guess. 
     1) Disables the selected letter's onscreen keyboard button 
@@ -65,7 +65,13 @@ class Game {
     checkForWin method. If the player has won the game also calls the 
     gameOver method  */
     handleInteraction () {
-
+        const keyboardDiv = document.querySelector('#qwerty');
+        keyboardDiv.addEventListener('click', (e) => {
+            if (e.target.className === 'key') {
+                const selectedLetter = e.target.textContent;
+            }
+            this.activePhrase.checkLetter(selectedLetter);
+        });
     }
 
     /* removes a life from the scoreboard by replacing one of the 
@@ -86,7 +92,7 @@ class Game {
     outcome of the game, updates the overlay h1 element with a friendly
     win or loss message, and replaces the overlay's start CSS class with 
     either the win or lose CSS class */
-    gameOver () {
+    gameOver (gameWon) {
         
     }
 }

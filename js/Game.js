@@ -38,7 +38,10 @@ class Game {
     Addes that phrase to the board by calling the addPhraseToDisplay 
     method ont eh active Phrase object*/
     startGame () {
-
+        const overlayDiv = document.querySelector('#overlay');
+        overlayDiv.style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     }
 
     /* randomly retrieves one of the phrases stored in the phrases 

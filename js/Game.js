@@ -77,36 +77,61 @@ class Game {
         keyboardDiv.addEventListener('click', (e) => {
             if (e.target.className === 'key') {
                 const selectedLetter = e.target.textContent;
+                if (this.activePhrase.checkLetter(selectedLetter)) {
+                    e.target.className = 'chosen';
+                    this.activePhrase.showMatchedLetter(selectedLetter);
+                    if (this.checkForWin()) {
+                        this.gameOver(true);
+                    }
+                } else {
+                    e.target.className = 'wrong';
+                    e.target.setAttribute('disabled', 'disabled');
+                    this.removeLife();
+                }
             }
-            if (this.activePhrase.checkLetter(selectedLetter)) {
-                this.activePhrase.showMatchedLetter(selectedLetter);
-            } else {
-                this.removeLife();
-            }
-            
         });
     }
 
-    /* removes a life from the scoreboard by replacing one of the 
-    liveHeart images with a lostHeart image and increments the missed
-    property. If the player has five missed guesses then end the game
-    by calling the gameOver method */
+    /**  
+     * removes a life from the scoreboard by replacing one of the 
+     * liveHeart images with a lostHeart image and increments the missed
+     * property. If the player has five missed guesses then end the game
+     * by calling the gameOver method 
+     * 
+    */
     removeLife () {
         const scoreboard = document.querySelectorAll('.tries img');
         scoreboard[this.missed].src = 'images/lostHeart.png'
         this.missed += 1;
+        if (this.missed === 5) {
+            this.gameOver(false);
+        }
     }
 
-    /* checks to see if the player has revealed all the letters in the 
-    active phrase */
+    /** 
+     * checks to see if the player has revealed all the letters in the 
+     * active phrase
+     * @return {boolean} True if game has been won, false if game wasn't won 
+    */
     checkForWin () {
-
+        const phraseUl = document.querySelectorAll('#phrase li');
+        const hiddenLetters = phraseUl.filter(li => {
+            li.className === 'hide';
+        })
+        if (hiddenLetters.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /* displays the original start screen overlay and depending on the 
-    outcome of the game, updates the overlay h1 element with a friendly
-    win or loss message, and replaces the overlay's start CSS class with 
-    either the win or lose CSS class */
+    /** 
+     * displays the original start screen overlay and depending on the 
+     * outcome of the game, updates the overlay h1 element with a friendly
+     * win or loss message, and replaces the overlay's start CSS class with 
+     * either the win or lose CSS class 
+     * @param {boolean} gameWon - Whether or not the user won the game
+    */
     gameOver (gameWon) {
         
     }

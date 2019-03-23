@@ -80,6 +80,8 @@ class Game {
             }
             if (this.activePhrase.checkLetter(selectedLetter)) {
                 this.activePhrase.showMatchedLetter(selectedLetter);
+            } else {
+                this.removeLife();
             }
             
         });
@@ -90,7 +92,9 @@ class Game {
     property. If the player has five missed guesses then end the game
     by calling the gameOver method */
     removeLife () {
-
+        const scoreboard = document.querySelectorAll('.tries img');
+        scoreboard[this.missed].src = 'images/lostHeart.png'
+        this.missed += 1;
     }
 
     /* checks to see if the player has revealed all the letters in the 

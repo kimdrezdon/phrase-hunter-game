@@ -25,6 +25,14 @@ in order to avoid having to add an event listener to each
 individual keyboard button. Clicking the space between and 
 around the onscreen keyboard buttons should not result in the 
 handleInteraction method being called */
+const keyboardDiv = document.querySelector('#qwerty');
+keyboardDiv.addEventListener('click', (e) => {
+    if (e.target.className === 'key') {
+        game.handleInteraction(e);
+    }
+});
+
+
 
 /* After a game is completed the gameboard needs to be reset so 
 that clicking the Start Game button will successfully load a new

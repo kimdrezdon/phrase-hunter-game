@@ -6,12 +6,14 @@
 and add event listeners for the start button and onscreen 
 keyboard buttons */
 
+let game;
+
 /* add a click event listener to the Start Game button which
 creates a new Game object and starts the game by calling the 
 startGame method */
 const startButton = document.querySelector('#btn__reset');
 startButton.addEventListener('click', () => {
-    const game = new Game;
+    game = new Game;
     game.startGame();
 });
 

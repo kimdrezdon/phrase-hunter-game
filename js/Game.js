@@ -127,6 +127,7 @@ class Game {
     gameOver (gameWon) {
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'flex';
+        
         const gameOverMessage = document.querySelector('#game-over-message');
         if (gameWon) {
             gameOverMessage.textContent = 'You guessed the phrase, congratulations!'
@@ -135,5 +136,38 @@ class Game {
             gameOverMessage.textContent = 'You did not guess the phrase, please try again!'
             overlayDiv.classList.replace('start', 'lose');
         }
+
+        this.gameReset();
+    }
+       
+    /* After a game is completed the gameboard needs to be reset so 
+    that clicking the Start Game button will successfully load a new
+    game.
+    1) Remove all li elements from the Phrase ul element
+    2) Enable all of the onscreen keyboard buttons and update each 
+    to use the key CSS class and not sue the chosen or wrong CSS
+    classes
+    3) Reset all of the heart images (ie: the players lives) in the
+    scoreboard at the bottom of the gameboard to display the 
+    liveHeart image */
+    gameReset () { 
+        this.missed = 0;
+        
+        const phraseUl = document.querySelector('#phrase ul');
+        //found on MDN
+        while (phraseUl.firstChild) {
+            phraseUl.removeChild(phraseUl.firstChild);
+        }
+        
+        const keyboardButtons = document.querySelectorAll('.key')
+        keyboardButtons.forEach(button => {
+            if (button.getAttribute('disabled')) {
+                button.removeAttribute('disabled');
+            }
+            button.classList.remove('wrong', 'chosen');
+        });
+        
+        const scoreboard = document.querySelectorAll('.tries img');
+        scoreboard.forEach(img => img.src = 'images/liveHeart.png');
     }
 }

@@ -31,16 +31,3 @@ keyboardDiv.addEventListener('click', (e) => {
         game.handleInteraction(e);
     }
 });
-
-
-
-/* After a game is completed the gameboard needs to be reset so 
-that clicking the Start Game button will successfully load a new
-game.
-1) Remove all li elements from the Phrase ul element
-2) Enable all of the onscreen keyboard buttons and update each 
-to use the key CSS class and not sue the chosen or wrong CSS
-classes
-3) Reset all of the heart images (ie: the players lives) in the
-scoreboard at the bottom of the gameboard to display the 
-liveHeart image */

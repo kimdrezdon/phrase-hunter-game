@@ -54,7 +54,7 @@ class Phrase {
     showMatchedLetter (letter) {
         const matchedLis = document.getElementsByClassName(letter);
         for (let li of matchedLis) {
-            li.className = `show letter ${letter}`;
+            li.classList.replace('hide', 'show');
         }
     }
 }

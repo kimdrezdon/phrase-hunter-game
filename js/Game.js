@@ -130,6 +130,15 @@ class Game {
      * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver (gameWon) {
-        
+        const overlayDiv = document.querySelector('#overlay');
+        overlayDiv.style.display = 'flex';
+        const gameOverMessage = document.querySelector('#game-over-message');
+        if (gameWon) {
+            gameOverMessage.textContent = 'You guessed the phrase, congratulations!'
+            overlayDiv.classList.replace('start', 'win');
+        } else {
+            gameOverMessage.textContent = 'You did not guess the phrase, please try again!'
+            overlayDiv.classList.replace('start', 'lose');
+        }
     }
 }

@@ -77,15 +77,15 @@ class Game {
         keyboardDiv.addEventListener('click', (e) => {
             if (e.target.className === 'key') {
                 const selectedLetter = e.target.textContent;
+                e.target.setAttribute('disabled', 'disabled');
                 if (this.activePhrase.checkLetter(selectedLetter)) {
-                    e.target.className = 'chosen';
+                    e.target.classList.add('chosen');
                     this.activePhrase.showMatchedLetter(selectedLetter);
                     if (this.checkForWin()) {
                         this.gameOver(true);
                     }
                 } else {
-                    e.target.className = 'wrong';
-                    e.target.setAttribute('disabled', 'disabled');
+                    e.target.classList.add('wrong');
                     this.removeLife();
                 }
             }
@@ -114,11 +114,8 @@ class Game {
      * @return {boolean} True if game has been won, false if game wasn't won 
     */
     checkForWin () {
-        const phraseUl = document.querySelectorAll('#phrase li');
-        const hiddenLetters = phraseUl.filter(li => {
-            li.className === 'hide';
-        })
-        if (hiddenLetters.length === 0) {
+        const unmatchedLetters = document.getElementsByClassName('hide');
+        if (unmatchedLetters.length === 0) {
             return true;
         } else {
             return false;

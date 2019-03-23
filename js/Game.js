@@ -23,20 +23,24 @@ class Game {
         this.activePhrase = null;
     }
     
-    /* creates phrases array */
+    /**
+     * creates phrases array 
+     * @return {array} An array of phrase that could be used in the game
+    */
     createPhrases() {
         const array =  ['Batteries Not Included', 
                         'Early in the Morning',
                         'Once in a Blue Moon',
                         'Down by the River',
-                        'Horse of a Different Color'];
+                        'Winter is Coming'];
         return array;
     }
     
-    /* hides the start screen overlay, calls the getRandomPhrase 
-    method and sets the activePhrase property with the chosen phrase.
-    Addes that phrase to the board by calling the addPhraseToDisplay 
-    method ont eh active Phrase object*/
+    /** hides the start screen overlay, calls the getRandomPhrase
+     * method and sets the activePhrase property with the chosen phrase.
+     * Adds that phrase to the board by calling the addPhraseToDisplay
+     * method on the active Phrase object
+    */
     startGame () {
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
@@ -44,33 +48,40 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
 
-    /* randomly retrieves one of the phrases stored in the phrases 
-    array and returns it */
+    /** randomly retrieves one of the phrases stored in the phrases 
+     * array and returns it 
+     * @return {Object} Phrase object chosen to be used
+    */
     getRandomPhrase () {
         const randomNum = Math.floor(Math.random()*5);
-        const randomPhrase = new Phrase(this.phrases[randomNum]);
-        return randomPhrase;
+        return new Phrase(this.phrases[randomNum]);
     }
 
-    /* controls most of the game logic. Checks to see if the button 
-    clicked by the player matches a letter in the phrase and then 
-    directs the game based on the correct or incorrect guess. 
-    1) Disables the selected letter's onscreen keyboard button 
-    2) If the phrase does not include the guessed letter, adds the
-    wrong CSS class to the selected letter's keyboard button and calls
-    the removeLife method
-    3) If the phrase includes the guessed letter, adds the chosen CSS 
-    class to the selected letter's keyboard button, calls the 
-    showMatchedLetter method on the phrase and then calls the
-    checkForWin method. If the player has won the game also calls the 
-    gameOver method  */
+    /** controls most of the game logic 
+     * 1) Captures the clicked/chosen letter
+     * 2) Checks to see if the letter clicked by the player matches a 
+     *    letter in the phrase and then directs the game based on the 
+     *    correct or incorrect guess. 
+     * 3) Disables the selected letter's onscreen keyboard button 
+     * 4) If the phrase does not include the guessed letter, adds the
+     *    wrong CSS class to the selected letter's keyboard button and calls
+     *    the removeLife method
+     * 5) If the phrase includes the guessed letter, adds the chosen CSS 
+     *    class to the selected letter's keyboard button, calls the 
+     *    showMatchedLetter method on the phrase and then calls the
+     *    checkForWin method. If the player has won the game also calls the 
+     *    gameOver method  
+    */
     handleInteraction () {
         const keyboardDiv = document.querySelector('#qwerty');
         keyboardDiv.addEventListener('click', (e) => {
             if (e.target.className === 'key') {
                 const selectedLetter = e.target.textContent;
             }
-            this.activePhrase.checkLetter(selectedLetter);
+            if (this.activePhrase.checkLetter(selectedLetter)) {
+                this.activePhrase.showMatchedLetter(selectedLetter);
+            }
+            
         });
     }
 

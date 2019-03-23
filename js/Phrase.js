@@ -11,12 +11,13 @@ class Phrase {
         this.phrase = phrase.toLowerCase();
     }
 
-    /*  adds letter placeholders to the display when the game starts, each 
-    letter represented by an empty box, one li element for each letter. 
-    When the player correctly guesses a letter, the empty box is replaced 
-    with the matched letter (see the showMatchedLetter method below). The 
-    phrase displayed on the screen uses the letter CSS class for letters and
-    the space CSS class for spaces */
+    /** adds letter placeholders to the display when the game starts, each
+     *  letter represented by an empty box, one li element for each letter.
+     *  When the player correctly guesses a letter, the empty box is replaced
+     *  with the matched letter (see the showMatchedLetter method below). The
+     *  phrase displayed on the screen uses the letter CSS class for letters 
+     * and the space CSS class for spaces 
+    */
     addPhraseToDisplay () {
         const phraseUl = document.querySelector('#phrase ul');
         for (let char of this.phrase) {
@@ -31,17 +32,29 @@ class Phrase {
         }
     }
 
-    /*  checks to see if the letter selected by the player matches a letter 
-    in the phrase */
-    checkLetter () {
-
+    /**
+     *  checks to see if the letter selected by the player matches a letter 
+     *  in the phrase 
+     *  @param (string) letter - Letter to check
+    */
+    checkLetter (letter) {
+        if (this.phrase.indexOf(letter) >= 0) {
+            return true;
+        } else {
+            return false;
+        }   
     }
 
-    /*  reveals the letters on the board that matches the player's selection. 
-    To reveal the matching letters select all of the letter DOM elements 
-    that have a CSS class name that matches the selected letter and replace 
-    each selected elements hide CSS class with the show CSS class */
-    showMatchedLetter () {
-        
+    /** reveals the letters on the board that matches the player's selection. 
+     * To reveal the matching letters select all of the letter DOM elements 
+     * that have a CSS class name that matches the selected letter and replace 
+     * each selected elements hide CSS class with the show CSS class 
+     *  @param (string) letter - Letter to check
+    */
+    showMatchedLetter (letter) {
+        const matchedLis = document.getElementsByClassName(letter);
+        for (let li of matchedLis) {
+            li.className = `show letter ${letter}`;
+        }
     }
 }

@@ -1,30 +1,20 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
- * Game.js */
-
-/* this file is used to create Game class methods for starting and 
-ending the game, handling interactions, getting a random phrase,
-checking for a win, and removing a life from the scoreboard  */
+ * Game.js 
+*/
 
 class Game {
     constructor () {
-        /* used to track the number of missed guesses by the player.
-        Initial value is 0 since no guesses have been made at the 
-        start of the game */
+        /** Tracks the number of missed guesses by the player. */
         this.missed = 0;
-        /* an array of 5 Phrase objects to use with the game. A phrase
-        should only include letters and spaces, no numbers punctuation
-        or special characters */
+        /** Calls the createPhrases method to return an array */
         this.phrases = this.createPhrases();
-        /* this si the Phrase object that's currently in play. The 
-        initial value is null. Within the startGame method, this 
-        property will be set to the Phrase object returned from a call
-        to the getRandomPhrase method */
+        /** The Phrase object that's currently in play */
         this.activePhrase = null;
     }
     
     /**
-     * creates phrases array 
+     * Creates an array of 5 phrases. 
      * @return {array} An array of phrase that could be used in the game
     */
     createPhrases() {
@@ -36,10 +26,11 @@ class Game {
         return array;
     }
     
-    /** hides the start screen overlay, calls the getRandomPhrase
-     * method and sets the activePhrase property with the chosen phrase.
-     * Adds that phrase to the board by calling the addPhraseToDisplay
-     * method on the active Phrase object
+    /** 
+     * Called when the start button is clicked. Hides the overlay div.
+     * Sets the activePhrase property to the phrase returned by the 
+     * getRandomPhrase method. Calls the addPhraseToDisplay method on 
+     * the activePhrase object.
     */
     startGame () {
         const overlayDiv = document.querySelector('#overlay');
@@ -48,8 +39,9 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
 
-    /** randomly retrieves one of the phrases stored in the phrases 
-     * array and returns it 
+    /** 
+     * Retrieves one of the phrases stored in the phrases array using 
+     * a random number.
      * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase () {
@@ -57,20 +49,15 @@ class Game {
         return new Phrase(this.phrases[randomNum]);
     }
 
-    /** controls most of the game logic 
-     * 1) Captures the clicked/chosen letter
-     * 2) Checks to see if the letter clicked by the player matches a 
-     *    letter in the phrase and then directs the game based on the 
-     *    correct or incorrect guess. 
-     * 3) Disables the selected letter's onscreen keyboard button 
-     * 4) If the phrase does not include the guessed letter, adds the
-     *    wrong CSS class to the selected letter's keyboard button and calls
-     *    the removeLife method
-     * 5) If the phrase includes the guessed letter, adds the chosen CSS 
-     *    class to the selected letter's keyboard button, calls the 
-     *    showMatchedLetter method on the phrase and then calls the
-     *    checkForWin method. If the player has won the game also calls the 
-     *    gameOver method  
+    /** 
+     * Receives as an arguement the button passed from the click or keyup event listener.
+     * Collects the selected letter. Disables the button. Calls the checkLetter method,
+     * passing the selected letter. If the letter is in the phrase, the chosen class is 
+     * added to the button, the showMatchedLetter method is called to reveal all matching 
+     * letters in the phrase, calls the checkForWin method and if the user has won, the 
+     * gameOver method is called. If the letters is NOT in the phrase, the wrong class
+     * is added to the button, and the removeLife method is called to remove a life. 
+     * @param {element} button - The user's selected button via click or keyup event listener 
     */
     handleInteraction (button) {
         const selectedLetter = button.textContent;
@@ -88,11 +75,9 @@ class Game {
     }
 
     /**  
-     * removes a life from the scoreboard by replacing one of the 
-     * liveHeart images with a lostHeart image and increments the missed
-     * property. If the player has five missed guesses then end the game
-     * by calling the gameOver method 
-     * 
+     * Removes a life from the scoreboard by replacing the leftmost life triangle
+     * with a lost triangle. The missed property is increased by one. If the missed
+     * property reaches 5, the gameOver method is called to end the game with a loss.
     */
     removeLife () {
         const scoreboard = document.querySelectorAll('.tries img');
@@ -104,8 +89,8 @@ class Game {
     }
 
     /** 
-     * checks to see if the player has revealed all the letters in the 
-     * active phrase
+     * Checks to see if the player has revealed all the letters in the active phrase
+     * by checking if there are any remaining li elements with a class of hide.
      * @return {boolean} True if game has been won, false if game wasn't won 
     */
     checkForWin () {
@@ -118,10 +103,9 @@ class Game {
     }
 
     /** 
-     * displays the original start screen overlay and depending on the 
-     * outcome of the game, updates the overlay h1 element with a friendly
-     * win or loss message, and replaces the overlay's start CSS class with 
-     * either the win or lose CSS class 
+     * Displays the overlay div. Replaces the overlay's class with win or lose, and 
+     * updates the overlay's message based on the outcome of the game. Calls the 
+     * gameReset method. 
      * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver (gameWon) {
@@ -140,21 +124,16 @@ class Game {
         this.gameReset();
     }
        
-    /* After a game is completed the gameboard needs to be reset so 
-    that clicking the Start Game button will successfully load a new
-    game.
-    1) Remove all li elements from the Phrase ul element
-    2) Enable all of the onscreen keyboard buttons and update each 
-    to use the key CSS class and not sue the chosen or wrong CSS
-    classes
-    3) Reset all of the heart images (ie: the players lives) in the
-    scoreboard at the bottom of the gameboard to display the 
-    liveHeart image */
+    /** 
+     * Resets the gameboard after a game is completed. Resets the missed property 
+     * back to 0. Removes all li elements from the phrase ul element. Re-enables 
+     * all of the onscreen keyboard buttons and removes any wrong or chosen classes 
+     * from the buttons. Changes all of the lost triangle images back to life triangles.
+    */
     gameReset () { 
         this.missed = 0;
         
         const phraseUl = document.querySelector('#phrase ul');
-        //found on MDN
         while (phraseUl.firstChild) {
             phraseUl.removeChild(phraseUl.firstChild);
         }

@@ -1,40 +1,41 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
- * app.js */
-
-/* this file is used to create a new instance of the Game class
-and add event listeners for the start button and onscreen 
-keyboard buttons */
+ * app.js 
+*/
 
 let game;
-
-/* add a click event listener to the Start Game button which
-creates a new Game object and starts the game by calling the 
-startGame method */
 const startButton = document.querySelector('#btn__reset');
+const keyboardDiv = document.querySelector('#qwerty');
+const keyboardButtons = document.querySelectorAll('.key');
+const overlayDiv = document.querySelector('#overlay');
+
+/** 
+ * Adds a click event listener to the Start Game button which
+ * creates a new Game object and starts the game by calling the
+ * startGame method.
+*/
 startButton.addEventListener('click', () => {
     game = new Game;
     game.startGame();
 });
 
-
-/* add click event listeners to each of the onscreen keyboard 
-buttons so that clicking a button calls the handleInteraction
-method on the Game object. Event delegation can also be used 
-in order to avoid having to add an event listener to each 
-individual keyboard button. Clicking the space between and 
-around the onscreen keyboard buttons should not result in the 
-handleInteraction method being called */
-const keyboardDiv = document.querySelector('#qwerty');
+/** 
+ * Adds a click event listener to the the onscreen keyboard 
+ * div so that clicking a keyboard button inside the div calls 
+ * the handleInteraction method on the Game object.
+*/
 keyboardDiv.addEventListener('click', (e) => {
     if (e.target.className === 'key') {
         game.handleInteraction(e.target);
     }
 });
 
-const keyboardButtons = document.querySelectorAll('.key');
-const overlayDiv = document.querySelector('#overlay');
-        
+/** 
+ * Adds a keyup event listener to the document so that pressing 
+ * a letter key, only while the overlay is not visible, will trigger 
+ * the associated onscreen keyboard button, and calls the handleInteraction 
+ * method on the Game object.
+*/        
 document.addEventListener('keyup', (e) => {
     if (overlayDiv.style.display === 'none') {
         if (e.keyCode >= 65 && e.keyCode <= 90) {

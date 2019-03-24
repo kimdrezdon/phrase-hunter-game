@@ -37,7 +37,7 @@ document.addEventListener('keyup', (e) => {
     if (e.keyCode >= 65 && e.keyCode <= 90) {
         var letter = String.fromCharCode(e.keyCode).toLowerCase();
         for (let i = 0; i < keyboardButtons.length; i++) {
-            if (keyboardButtons[i].textContent === letter) {
+            if (keyboardButtons[i].textContent === letter && !keyboardButtons[i].hasAttribute('disabled')) {
                 const selectedButton = keyboardButtons[i];
                 game.handleInteraction(selectedButton);
                 break;

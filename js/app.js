@@ -33,14 +33,18 @@ keyboardDiv.addEventListener('click', (e) => {
 });
 
 const keyboardButtons = document.querySelectorAll('.key');
+const overlayDiv = document.querySelector('#overlay');
+        
 document.addEventListener('keyup', (e) => {
-    if (e.keyCode >= 65 && e.keyCode <= 90) {
-        var letter = String.fromCharCode(e.keyCode).toLowerCase();
-        for (let i = 0; i < keyboardButtons.length; i++) {
-            if (keyboardButtons[i].textContent === letter && !keyboardButtons[i].hasAttribute('disabled')) {
-                const selectedButton = keyboardButtons[i];
-                game.handleInteraction(selectedButton);
-                break;
+    if (overlayDiv.style.display === 'none') {
+        if (e.keyCode >= 65 && e.keyCode <= 90) {
+            var letter = String.fromCharCode(e.keyCode).toLowerCase();
+            for (let i = 0; i < keyboardButtons.length; i++) {
+                if (keyboardButtons[i].textContent === letter && !keyboardButtons[i].hasAttribute('disabled')) {
+                    const selectedButton = keyboardButtons[i];
+                    game.handleInteraction(selectedButton);
+                    break;
+                }
             }
         }
     }

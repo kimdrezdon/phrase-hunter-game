@@ -72,17 +72,17 @@ class Game {
      *    checkForWin method. If the player has won the game also calls the 
      *    gameOver method  
     */
-    handleInteraction (e) {
-        const selectedLetter = e.target.textContent;
-        e.target.setAttribute('disabled', 'disabled');
+    handleInteraction (button) {
+        const selectedLetter = button.textContent;
+        button.setAttribute('disabled', 'disabled');
         if (this.activePhrase.checkLetter(selectedLetter)) {
-            e.target.classList.add('chosen');
+            button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(selectedLetter);
             if (this.checkForWin()) {
                 this.gameOver(true);
             }
         } else {
-            e.target.classList.add('wrong');
+            button.classList.add('wrong');
             this.removeLife();
         }
     }

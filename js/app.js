@@ -28,6 +28,20 @@ handleInteraction method being called */
 const keyboardDiv = document.querySelector('#qwerty');
 keyboardDiv.addEventListener('click', (e) => {
     if (e.target.className === 'key') {
-        game.handleInteraction(e);
+        game.handleInteraction(e.target);
+    }
+});
+
+const keyboardButtons = document.querySelectorAll('.key');
+document.addEventListener('keyup', (e) => {
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+        var letter = String.fromCharCode(e.keyCode).toLowerCase();
+        for (let i = 0; i < keyboardButtons.length; i++) {
+            if (keyboardButtons[i].textContent === letter) {
+                const selectedButton = keyboardButtons[i];
+                game.handleInteraction(selectedButton);
+                break;
+            }
+        }
     }
 });

@@ -35,7 +35,7 @@ keyboardDiv.addEventListener('click', (e) => {
  * a letter key, only while the overlay is not visible, will trigger 
  * the associated onscreen keyboard button, and calls the handleInteraction 
  * method on the Game object.
-*/        
+*/
 document.addEventListener('keyup', (e) => {
     if (overlayDiv.style.display === 'none') {
         if (e.keyCode >= 65 && e.keyCode <= 90) {

@@ -28,11 +28,11 @@ class Game {
      * @return {array} An array of phrase that could be used in the game
     */
     createPhrases() {
-        const array =  ['Batteries Not Included', 
-                        'Early in the Morning',
+        const array =  ['Batteries Not Included',
                         'Once in a Blue Moon',
                         'Down by the River',
-                        'Winter is Coming'];
+                        'Winter is Coming',
+                        'Beach Bum'];
         return array;
     }
     
@@ -131,10 +131,10 @@ class Game {
         const gameOverMessage = document.querySelector('#game-over-message');
         if (gameWon) {
             gameOverMessage.textContent = 'You guessed the phrase, congratulations!'
-            overlayDiv.classList.replace('start', 'win');
+            overlayDiv.className = 'win';
         } else {
             gameOverMessage.textContent = 'You did not guess the phrase, please try again!'
-            overlayDiv.classList.replace('start', 'lose');
+            overlayDiv.className = 'lose';
         }
 
         this.gameReset();

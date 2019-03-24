@@ -4,7 +4,7 @@
 */
 
 class Phrase {
-    constructor (phrase) {
+    constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     }
 
@@ -14,7 +14,7 @@ class Phrase {
      * The letter class is applied to letters and the space class is applied 
      * to spaces.
     */
-    addPhraseToDisplay () {
+    addPhraseToDisplay() {
         const phraseUl = document.querySelector('#phrase ul');
         for (let char of this.phrase) {
             const li = document.createElement('li');
@@ -34,12 +34,12 @@ class Phrase {
      *  @param (string) letter - Letter to check
      *  @return {boolean} True if selected letter is in phrase, false if not 
     */
-    checkLetter (letter) {
+    checkLetter(letter) {
         if (this.phrase.indexOf(letter) >= 0) {
             return true;
         } else {
             return false;
-        }   
+        }
     }
 
     /** 
@@ -48,7 +48,7 @@ class Phrase {
      * replacing the hide class with the show class.
      *  @param (string) letter - Letter to check
     */
-    showMatchedLetter (letter) {
+    showMatchedLetter(letter) {
         const matchedLis = document.getElementsByClassName(letter);
         for (let li of matchedLis) {
             li.classList.replace('hide', 'show');

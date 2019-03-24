@@ -4,7 +4,7 @@
 */
 
 class Game {
-    constructor () {
+    constructor() {
         /** Tracks the number of missed guesses by the player. */
         this.missed = 0;
         /** Calls the createPhrases method to return an array */
@@ -12,27 +12,27 @@ class Game {
         /** The Phrase object that's currently in play */
         this.activePhrase = null;
     }
-    
+
     /**
      * Creates an array of 5 phrases. 
      * @return {array} An array of phrase that could be used in the game
     */
     createPhrases() {
-        const array =  ['Batteries Not Included',
-                        'Once in a Blue Moon',
-                        'Down by the River',
-                        'Winter is Coming',
-                        'Beach Bum'];
+        const array = ['Batteries Not Included',
+            'Once in a Blue Moon',
+            'Down by the River',
+            'Winter is Coming',
+            'Beach Bum'];
         return array;
     }
-    
+
     /** 
      * Called when the start button is clicked. Hides the overlay div.
      * Sets the activePhrase property to the phrase returned by the 
      * getRandomPhrase method. Calls the addPhraseToDisplay method on 
      * the activePhrase object.
     */
-    startGame () {
+    startGame() {
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
@@ -44,8 +44,8 @@ class Game {
      * a random number.
      * @return {Object} Phrase object chosen to be used
     */
-    getRandomPhrase () {
-        const randomNum = Math.floor(Math.random()*5);
+    getRandomPhrase() {
+        const randomNum = Math.floor(Math.random() * 5);
         return new Phrase(this.phrases[randomNum]);
     }
 
@@ -59,7 +59,7 @@ class Game {
      * is added to the button, and the removeLife method is called to remove a life. 
      * @param {element} button - The user's selected button via click or keyup event listener 
     */
-    handleInteraction (button) {
+    handleInteraction(button) {
         const selectedLetter = button.textContent;
         button.setAttribute('disabled', 'disabled');
         if (this.activePhrase.checkLetter(selectedLetter)) {
@@ -79,7 +79,7 @@ class Game {
      * with a lost triangle. The missed property is increased by one. If the missed
      * property reaches 5, the gameOver method is called to end the game with a loss.
     */
-    removeLife () {
+    removeLife() {
         const scoreboard = document.querySelectorAll('.tries img');
         scoreboard[this.missed].src = 'images/lostTriangle.png'
         this.missed += 1;
@@ -93,7 +93,7 @@ class Game {
      * by checking if there are any remaining li elements with a class of hide.
      * @return {boolean} True if game has been won, false if game wasn't won 
     */
-    checkForWin () {
+    checkForWin() {
         const unmatchedLetters = document.getElementsByClassName('hide');
         if (unmatchedLetters.length === 0) {
             return true;
@@ -108,10 +108,10 @@ class Game {
      * gameReset method. 
      * @param {boolean} gameWon - Whether or not the user won the game
     */
-    gameOver (gameWon) {
+    gameOver(gameWon) {
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'flex';
-        
+
         const gameOverMessage = document.querySelector('#game-over-message');
         if (gameWon) {
             gameOverMessage.textContent = 'You guessed the phrase, congratulations!'
@@ -123,21 +123,21 @@ class Game {
 
         this.gameReset();
     }
-       
+
     /** 
      * Resets the gameboard after a game is completed. Resets the missed property 
      * back to 0. Removes all li elements from the phrase ul element. Re-enables 
      * all of the onscreen keyboard buttons and removes any wrong or chosen classes 
      * from the buttons. Changes all of the lost triangle images back to life triangles.
     */
-    gameReset () { 
+    gameReset() {
         this.missed = 0;
-        
+
         const phraseUl = document.querySelector('#phrase ul');
         while (phraseUl.firstChild) {
             phraseUl.removeChild(phraseUl.firstChild);
         }
-        
+
         const keyboardButtons = document.querySelectorAll('.key')
         keyboardButtons.forEach(button => {
             if (button.hasAttribute('disabled')) {
@@ -145,7 +145,7 @@ class Game {
             }
             button.classList.remove('wrong', 'chosen');
         });
-        
+
         const scoreboard = document.querySelectorAll('.tries img');
         scoreboard.forEach(img => img.src = 'images/lifeTriangle.png');
     }

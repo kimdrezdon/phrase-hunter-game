@@ -96,7 +96,7 @@ class Game {
     */
     removeLife () {
         const scoreboard = document.querySelectorAll('.tries img');
-        scoreboard[this.missed].src = 'images/lostHeart.png'
+        scoreboard[this.missed].src = 'images/lostTriangle.png'
         this.missed += 1;
         if (this.missed === 5) {
             this.gameOver(false);
@@ -168,6 +168,6 @@ class Game {
         });
         
         const scoreboard = document.querySelectorAll('.tries img');
-        scoreboard.forEach(img => img.src = 'images/liveHeart.png');
+        scoreboard.forEach(img => img.src = 'images/lifeTriangle.png');
     }
 }

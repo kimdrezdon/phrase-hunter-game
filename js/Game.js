@@ -161,7 +161,7 @@ class Game {
         
         const keyboardButtons = document.querySelectorAll('.key')
         keyboardButtons.forEach(button => {
-            if (button.getAttribute('disabled')) {
+            if (button.hasAttribute('disabled')) {
                 button.removeAttribute('disabled');
             }
             button.classList.remove('wrong', 'chosen');

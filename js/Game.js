@@ -22,7 +22,8 @@ class Game {
             'Once in a Blue Moon',
             'Down by the River',
             'Winter is Coming',
-            'Beach Bum'];
+            'Beach Bum',
+            'Sun is Shining'];
         return array;
     }
 
@@ -75,13 +76,13 @@ class Game {
     }
 
     /**  
-     * Removes a life from the scoreboard by replacing the leftmost life triangle
-     * with a lost triangle. The missed property is increased by one. If the missed
+     * Removes a life from the scoreboard by replacing the leftmost life heart
+     * with a lost heart. The missed property is increased by one. If the missed
      * property reaches 5, the gameOver method is called to end the game with a loss.
     */
     removeLife() {
         const scoreboard = document.querySelectorAll('.tries img');
-        scoreboard[this.missed].src = 'images/lostTriangle.png'
+        scoreboard[this.missed].src = 'images/lostHeart.png'
         this.missed += 1;
         if (this.missed === 5) {
             this.gameOver(false);
@@ -128,7 +129,7 @@ class Game {
      * Resets the gameboard after a game is completed. Resets the missed property 
      * back to 0. Removes all li elements from the phrase ul element. Re-enables 
      * all of the onscreen keyboard buttons and removes any wrong or chosen classes 
-     * from the buttons. Changes all of the lost triangle images back to life triangles.
+     * from the buttons. Changes all of the lost heart images back to life hearts.
     */
     gameReset() {
         this.missed = 0;
@@ -147,6 +148,6 @@ class Game {
         });
 
         const scoreboard = document.querySelectorAll('.tries img');
-        scoreboard.forEach(img => img.src = 'images/lifeTriangle.png');
+        scoreboard.forEach(img => img.src = 'images/lifeHeart.png');
     }
 }

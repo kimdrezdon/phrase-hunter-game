@@ -26,6 +26,7 @@ body {
   display: flex;
   height: 100vh;
   background-image: url('../images/backgroundPattern.png');
+  overflow:hidden;
 }
 
 li, ol, ul {

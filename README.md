@@ -1,4 +1,4 @@
-# techdegree-project-4: OOP Game Show App
+# OOP Game Show App
 
 This project is a browser-based phrase guessing game, using JavaScript and Object-Oriented Programming. 
 

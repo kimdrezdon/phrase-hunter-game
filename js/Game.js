@@ -1,8 +1,3 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js 
-*/
-
 class Game {
     constructor() {
         /** Tracks the number of missed guesses by the player. */
@@ -11,6 +6,8 @@ class Game {
         this.phrases = this.createPhrases();
         /** The Phrase object that's currently in play */
         this.activePhrase = null;
+        /** Tracks phrases used to prevent repeating phrases */
+        this.randomUsed = [];
     }
 
     /**
@@ -18,12 +15,14 @@ class Game {
      * @return {array} An array of phrase that could be used in the game
     */
     createPhrases() {
-        const array = ['Batteries Not Included',
+        const array = [
+            'Batteries Not Included',
             'Once in a Blue Moon',
             'Down by the River',
             'Winter is Coming',
             'Beach Bum',
-            'Sun is Shining'];
+            'Sun is Shining'
+        ];
         return array;
     }
 
@@ -46,7 +45,14 @@ class Game {
      * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase() {
-        const randomNum = Math.floor(Math.random() * 5);
+        let randomNum;
+        do {
+            randomNum = Math.floor(Math.random() * this.phrases.length);
+        } while (this.randomUsed.indexOf(randomNum) >= 0);
+        this.randomUsed.push(randomNum);
+        if (this.randomUsed.length === this.phrases.length) {
+            this.randomUsed = [randomNum];
+        }
         return new Phrase(this.phrases[randomNum]);
     }
 

@@ -11,7 +11,7 @@ class Game {
     }
 
     /**
-     * Creates an array of 5 phrases. 
+     * Creates an array of phrases. 
      * @return {array} An array of phrase that could be used in the game
     */
     createPhrases() {

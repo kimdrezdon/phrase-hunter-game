@@ -1,6 +1,6 @@
 # OOP Game Show App
 
-### Techdegree Project 4
+### Treehouse Full Stack Techdegree - Project 4
 
 This project is a browser-based phrase guessing game, using JavaScript and Object-Oriented Programming.
 
